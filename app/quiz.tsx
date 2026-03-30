@@ -6,6 +6,7 @@ import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { QuizBackground } from "./components/ui/QuizBackground";
 import { quizStyles } from "../assets/style/quiz.styles";
+import LivesIndicator from "./components/ui/LivesIndicator";
 
 export default function QuizPage() {
   const { chapterIndex, questionIndex } = useQuiz();
@@ -34,7 +35,19 @@ export default function QuizPage() {
   }
   return (
     <QuizBackground>
-      <SafeAreaView style={quizStyles.container}>{view}</SafeAreaView>
+      <SafeAreaView style={quizStyles.container}>
+        <LivesIndicator />
+        <View
+          style={{
+            flex: 1,
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {view}
+        </View>
+      </SafeAreaView>
     </QuizBackground>
   );
 }

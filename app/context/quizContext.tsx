@@ -20,10 +20,13 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   function loseLife() {
-    setLives((prev) => Math.max(prev - 1, 0));
-    if(lives <= 0){
-        //rajouter ecran de loose
-    }
+    setLives((prev) => {
+      const nextLives = Math.max(prev - 1, 0);
+      if (nextLives <= 0) {
+        // rajouter ecran de loose
+      }
+      return nextLives;
+    });
   }
 
   function resetLife(){
