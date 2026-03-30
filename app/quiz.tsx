@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { QuizBackground } from "./components/QuizBackground";
+import { QuizBackground } from "./components/ui/QuizBackground";
 import { quizStyles } from "../assets/style/quiz.styles";
 
 export default function QuizPage() {

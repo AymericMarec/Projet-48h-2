@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { QuizBackground } from "./components/QuizBackground";
+import { QuizBackground } from "./components/ui/QuizBackground";
 import AppButton from "./components/ui/AppButton";
 
 export default function Index() {
