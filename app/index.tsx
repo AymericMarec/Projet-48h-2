@@ -4,6 +4,7 @@ import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
 export default function Index() {
   const [seriesButtonsTop, setSeriesButtonsTop] = useState<number | null>(null);
   const [titleHeight, setTitleHeight] = useState<number | null>(null);
