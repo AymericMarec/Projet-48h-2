@@ -1,17 +1,22 @@
+import { useQuiz } from "@/app/context/quizContext";
+import { router } from "expo-router";
 import { useEffect } from "react";
 import { View,Text, Pressable, Button } from "react-native";
 
 export default function DoNotPressQuestion(){
+    const { nextQuestion,loseLife } = useQuiz();
+
     useEffect(() => {
         const timer = setTimeout(() => {
-             // Gerer la gestion de victoire
+            nextQuestion()
+            router.push(`/quiz`)
         }, 5000);
 
         return () => clearTimeout(timer);
     }, []);
 
     function onClickLoose(){
-        // Gerer la gestion de defaite
+        loseLife()
     }
 
     return (

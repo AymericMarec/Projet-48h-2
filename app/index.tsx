@@ -3,9 +3,12 @@ import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useQuiz } from "@/app/context/quizContext"
 
 
 export default function Index() {
+  const { chooseChapter } = useQuiz();
+
   const [seriesButtonsTop, setSeriesButtonsTop] = useState<number | null>(null);
   const [titleHeight, setTitleHeight] = useState<number | null>(null);
 
@@ -48,7 +51,8 @@ export default function Index() {
               n !== 3 ? { marginBottom: 18 } : null,
             ]}
             onPress={() => {
-              router.push(`/quiz?series=${n}`);
+              chooseChapter(n)
+              router.push(`/quiz`);
             }}
           >
             <Text style={indexStyles.seriesButtonText}>Série {n}</Text>

@@ -1,26 +1,24 @@
-import { useMemo } from "react";
 import { useLocalSearchParams } from "expo-router";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { quizStyles } from "../assets/style/quiz.styles";
+import { useQuestion } from "./hooks/useQuiz";
+import StandardQuestion from "./components/question/StandardQuestion";
+import { useQuiz } from "@/app/context/quizContext";
+import { View,Text } from "react-native";
 
 export default function QuizPage() {
-  const { series } = useLocalSearchParams<{ series?: string }>();
+  const { chapterIndex,questionIndex } = useQuiz();
+  
+  const question = useQuestion(String(chapterIndex),questionIndex)
 
-  const seriesNumber = useMemo(() => {
-    if (!series) return null;
-    const n = Number(series);
-    if (!Number.isInteger(n)) return null;
-    if (n < 1 || n > 3) return null;
-    return n;
-  }, [series]);
+  if (!question){
+    return <View><Text>aucune question trouvé</Text></View>
+  }
 
-  return (
-    <SafeAreaView style={quizStyles.container}>
-      <Text style={quizStyles.title}>
-        {seriesNumber ? `Série ${seriesNumber}` : "Série inconnue"}
-      </Text>
-    </SafeAreaView>
-  );
+  if (question.type === "basic") {
+    return <StandardQuestion question={question} />;
+  }
+
+  if (question.type === "interactive") {
+    return <question.component/>;
+  }
 }
 

@@ -1,24 +1,27 @@
-import { useQuestion } from "@/app/hooks/useQuiz";
-import { Question } from "@/app/types/quiz";
+import { useQuiz } from "@/app/context/quizContext";
+import { BasicQuestion, Question } from "@/app/types/quiz";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Pressable,Text,View } from "react-native";
 
 type Props = {
-  idQuestion: number;
+  question: BasicQuestion;
 };
 
-export default function StandardQuestion({ idQuestion }:Props){
-    const question:Question = useQuestion(idQuestion)
+export default function StandardQuestion({ question }:Props){
+    const { nextQuestion,loseLife } = useQuiz();
     const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean | null>(null);
 
     function CheckAnswer(answer:string){
         if(answer != question.answer){
             setIsCorrectAnswer(false)
-            // gérer la réponse fausse
-            return false
+            loseLife()
         }
         
         setIsCorrectAnswer(true)
+        // RAJOUTER ANIMATION
+        nextQuestion()
+        router.push(`/quiz`)
     }
     
     if (!question) {
