@@ -2,6 +2,7 @@ import { LayoutChangeEvent, Pressable, Text, View } from "react-native";
 import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const [seriesButtonsTop, setSeriesButtonsTop] = useState<number | null>(null);
@@ -13,7 +14,7 @@ export default function Index() {
   }, [seriesButtonsTop, titleHeight]);
 
   return (
-    <View style={indexStyles.container}>
+    <SafeAreaView style={indexStyles.container}>
       <View
         style={indexStyles.titlePlaceholder}
         pointerEvents="none"
@@ -63,6 +64,6 @@ export default function Index() {
       >
         <Text style={indexStyles.settingsButtonText}>Settings</Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 }

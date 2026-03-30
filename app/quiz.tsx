@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import { useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { quizStyles } from "../assets/style/quiz.styles";
 
-export default function Quiz() {
+export default function QuizPage() {
   const { series } = useLocalSearchParams<{ series?: string }>();
 
   const seriesNumber = useMemo(() => {
@@ -15,11 +16,11 @@ export default function Quiz() {
   }, [series]);
 
   return (
-    <View style={quizStyles.container}>
+    <SafeAreaView style={quizStyles.container}>
       <Text style={quizStyles.title}>
         {seriesNumber ? `Série ${seriesNumber}` : "Série inconnue"}
       </Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
