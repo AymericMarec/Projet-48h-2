@@ -1,5 +1,11 @@
 import { Stack } from "expo-router";
+import { QuizProvider } from "./context/quizContext";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+
+  return (
+  <QuizProvider>
+    <Stack screenOptions={{ headerShown: false }} />
+  </QuizProvider>
+  );
 }

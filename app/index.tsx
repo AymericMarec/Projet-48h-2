@@ -3,10 +3,14 @@ import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useQuiz } from "@/app/context/quizContext"
+
 import { QuizBackground } from "./components/ui/QuizBackground";
 import AppButton from "./components/ui/AppButton";
 
 export default function Index() {
+  const { chooseChapter } = useQuiz();
+
   const [seriesButtonsTop, setSeriesButtonsTop] = useState<number | null>(null);
   const [titleHeight, setTitleHeight] = useState<number | null>(null);
 
@@ -45,7 +49,8 @@ export default function Index() {
           <AppButton
             key={n}
             onClick={() => {
-              router.push(`/quiz?series=${n}`);
+              chooseChapter(n)
+              router.push(`/quiz`);
             }}
             text="chapter"
             variant="yellow"
