@@ -11,7 +11,6 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-    <DoNotPressQuestion/>
     </View>
   );
 }
