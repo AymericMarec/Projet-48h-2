@@ -38,6 +38,7 @@ export const indexStyles = StyleSheet.create({
   seriesButtons: {
     alignItems: "center",
     width: "65%",
+    gap: 10,
   },
   seriesButton: {
     width: "100%",
@@ -52,4 +53,3 @@ export const indexStyles = StyleSheet.create({
     fontWeight: "700",
   },
 });
-

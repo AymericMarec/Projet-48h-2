@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import AppButton from "./components/ui/AppButton";
 
 export default function Index() {
   const [seriesButtonsTop, setSeriesButtonsTop] = useState<number | null>(null);
@@ -40,19 +40,14 @@ export default function Index() {
         }}
       >
         {[1, 2, 3].map((n) => (
-          <Pressable
+          <AppButton
             key={n}
-            accessibilityRole="button"
-            style={[
-              indexStyles.seriesButton,
-              n !== 3 ? { marginBottom: 18 } : null,
-            ]}
-            onPress={() => {
+            onClick={() => {
               router.push(`/quiz?series=${n}`);
             }}
-          >
-            <Text style={indexStyles.seriesButtonText}>Série {n}</Text>
-          </Pressable>
+            text="chapter"
+            variant="yellow"
+          />
         ))}
       </View>
 
