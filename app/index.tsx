@@ -1,6 +1,6 @@
 import React from "react";
-import ShakeQuestion from "./components/question/ShakeQuestion";
+import SoundQuestion from "./components/question/SoundQuestion";
 
 export default function Index() {
-  return <ShakeQuestion />;
+  return <SoundQuestion />;
 }
