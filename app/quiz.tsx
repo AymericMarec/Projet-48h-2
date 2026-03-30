@@ -3,22 +3,34 @@ import { useQuestion } from "./hooks/useQuiz";
 import StandardQuestion from "./components/question/StandardQuestion";
 import { useQuiz } from "@/app/context/quizContext";
 import { View,Text } from "react-native";
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { QuizBackground } from "./components/ui/QuizBackground";
+import { quizStyles } from "../assets/style/quiz.styles";
 
 export default function QuizPage() {
   const { chapterIndex,questionIndex } = useQuiz();
   
   const question = useQuestion(String(chapterIndex),questionIndex)
+  const view = <View><Text>Init</Text></View>
 
   if (!question){
-    return <View><Text>aucune question trouvé</Text></View>
+    view =  <View><Text>aucune question trouvé</Text></View>
   }
 
   if (question.type === "basic") {
-    return <StandardQuestion question={question} />;
+    view = <StandardQuestion question={question} />;
   }
 
   if (question.type === "interactive") {
-    return <question.component/>;
+    view =  <question.component/>;
   }
+  return (
+    <QuizBackground>
+      <SafeAreaView style={quizStyles.container}>
+        {view}
+      </SafeAreaView>
+    </QuizBackground>
+  );
 }
 

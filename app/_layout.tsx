@@ -5,7 +5,7 @@ export default function RootLayout() {
 
   return (
   <QuizProvider>
-    <Stack />
+    <Stack screenOptions={{ headerShown: false }} />
   </QuizProvider>
   );
 }

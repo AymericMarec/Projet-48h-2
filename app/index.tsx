@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuiz } from "@/app/context/quizContext"
 
+import { QuizBackground } from "./components/ui/QuizBackground";
+import AppButton from "./components/ui/AppButton";
 
 export default function Index() {
   const { chooseChapter } = useQuiz();
@@ -18,6 +20,7 @@ export default function Index() {
   }, [seriesButtonsTop, titleHeight]);
 
   return (
+    <QuizBackground>
     <SafeAreaView style={indexStyles.container}>
       <View
         style={indexStyles.titlePlaceholder}
@@ -43,20 +46,15 @@ export default function Index() {
         }}
       >
         {[1, 2, 3].map((n) => (
-          <Pressable
+          <AppButton
             key={n}
-            accessibilityRole="button"
-            style={[
-              indexStyles.seriesButton,
-              n !== 3 ? { marginBottom: 18 } : null,
-            ]}
-            onPress={() => {
+            onClick={() => {
               chooseChapter(n)
               router.push(`/quiz`);
             }}
-          >
-            <Text style={indexStyles.seriesButtonText}>Série {n}</Text>
-          </Pressable>
+            text="chapter"
+            variant="yellow"
+          />
         ))}
       </View>
 
@@ -70,5 +68,6 @@ export default function Index() {
         <Text style={indexStyles.settingsButtonText}>Settings</Text>
       </Pressable>
     </SafeAreaView>
+    </QuizBackground>
   );
 }
