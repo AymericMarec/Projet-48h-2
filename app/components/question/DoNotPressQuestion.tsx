@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { View, Text, Pressable, Button } from "react-native";
-import StressEffect from "../stressEffect";
+import { View,Text, Pressable, Button } from "react-native";
 
 export default function DoNotPressQuestion() {
   useEffect(() => {
@@ -15,13 +14,12 @@ export default function DoNotPressQuestion() {
     // Gerer la gestion de defaite
   }
 
-  return (
-    <View style={{ flex: 1 }}>
-      <StressEffect />
-      <Text>Cliquez le plus rapidement possible sur aucun bouton</Text>
-      <Pressable>
-        <Button title="Clique ici" onPress={onClickLoose} />
-      </Pressable>
-    </View>
-  );
+    return (
+        <View style={{ flex: 1 }}>
+            <Text>Cliquez le plus rapidement possible sur aucun bouton</Text>
+            <Pressable>
+                <Button title="Clique ici" onPress={onClickLoose}/>
+            </Pressable>
+        </View>
+    )
 }
