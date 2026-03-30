@@ -3,6 +3,7 @@ import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { QuizBackground } from "./components/QuizBackground";
 
 
 export default function Index() {
@@ -15,6 +16,7 @@ export default function Index() {
   }, [seriesButtonsTop, titleHeight]);
 
   return (
+    <QuizBackground>
     <SafeAreaView style={indexStyles.container}>
       <View
         style={indexStyles.titlePlaceholder}
@@ -66,5 +68,6 @@ export default function Index() {
         <Text style={indexStyles.settingsButtonText}>Settings</Text>
       </Pressable>
     </SafeAreaView>
+    </QuizBackground>
   );
 }
