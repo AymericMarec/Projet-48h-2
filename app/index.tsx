@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import StandardQuestion from "./components/question/StandardQuestion";
+
 
 export default function Index() {
   return (
@@ -10,7 +10,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-    
+      
     </View>
   );
 }
