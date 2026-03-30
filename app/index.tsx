@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
-import SizeComparison from "./components/question/SizeComparison";
+import SizeComparison2 from "./components/question/SizeComparison2";
+import SizeComparison1 from "./components/question/SizeComparison1";
 
 export default function Index() {
   return (
@@ -11,7 +12,7 @@ export default function Index() {
       }}
     >
       <Text>
-        <SizeComparison />
+        <SizeComparison1 />
       </Text>
     </View>
   );
