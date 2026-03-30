@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { View,Text, Pressable, Button } from "react-native";
 import StressEffect from "../stressEffect";
 
-export default function StandardQuestion(){
+export default function DoNotPressQuestion(){
     useEffect(() => {
         const timer = setTimeout(() => {
              // Gerer la gestion de victoire
