@@ -1,6 +1,6 @@
 import React from "react";
-import ShakeQuestion from "./components/question/ShakeQuestion";
+import LightQuestion from "./components/question/LightQuestion";
 
 export default function Index() {
-  return <ShakeQuestion />;
+  return <LightQuestion />;
 }
