@@ -1,30 +1,42 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '@/assets/style/button.styles';
 import { quizStyles } from '@/assets/style/quiz.styles';
+import { useQuiz } from '@/app/context/quizContext';
+import { router } from 'expo-router';
 
-export default function VisualEnigma2() {
   const Button_data = [
   { id: 1, buttonSize: 90, emoji: '🚗', realSize: 400 },
   { id: 2, buttonSize: 110, emoji: '🛼', realSize: 30 },
   { id: 3, buttonSize: 60, emoji: '✈️', realSize: 3000 },
   { id: 4, buttonSize: 80, emoji: '🚲', realSize: 200 },
 ];
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
+export default function VisualEnigma2() {
+  const { loseLife, nextQuestion } = useQuiz();
+  const hasWonRef = useRef(false); 
+
    const colors = ['red', 'blue', 'yellow', 'green'];
 
   const handlePress = (realSize: number) => {
+    if (hasWonRef.current) return;
     const maxRealSize = Math.max(...Button_data.map(obj => obj.realSize));
-    setIsCorrect(realSize === maxRealSize);
+
+    if(realSize === maxRealSize){
+      hasWonRef.current = true;
+      setTimeout(() => {
+        nextQuestion(); 
+        router.push("/quiz");
+      }, 1000);
+    } else {
+      loseLife(); 
+    }
   };
 
   return (
     <View style={quizStyles.container}>
-      <Text style={quizStyles.questionTitle}>
-        Énigme visuelle - Partie 2
-      </Text>
       <Text style={quizStyles.title}>
-        Consigne : Clique sur le plus grand le plus rapidement possible.
+        Clique sur le plus grand.
       </Text>
 
       <View style={{ 
@@ -33,6 +45,7 @@ export default function VisualEnigma2() {
         justifyContent: 'center', 
         width: 280,
         alignItems: 'center',
+        alignSelf: 'center'
       }}>
         {Button_data.map((btn, index) => {
           const colorKey = colors[index % colors.length];
@@ -41,6 +54,7 @@ export default function VisualEnigma2() {
             <TouchableOpacity
               key={btn.id}
               onPress={() => handlePress(btn.realSize)}
+              disabled={hasWonRef.current}
               style={[
                 styles.base, 
                 styles[colorKey as keyof typeof styles],
@@ -57,11 +71,6 @@ export default function VisualEnigma2() {
             </TouchableOpacity>
           );
         })}
-      </View>
-
-      <View style={{ marginTop: 30, height: 40 }}>
-        {isCorrect === true && <Text style={[styles.text, {color: 'green'}]}>Gagné !</Text>}
-        {isCorrect === false && <Text style={[styles.text, {color: 'red'}]}>Perdu !</Text>}
       </View>
     </View>
   );

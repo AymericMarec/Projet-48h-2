@@ -9,6 +9,8 @@ import { quizStyles } from "../assets/style/quiz.styles";
 import LivesIndicator from "./components/ui/LivesIndicator";
 import LongPressSkippableTitle from "./components/ui/LongPressSkippableTitle";
 import Question from "./components/ui/Question";
+import VisualEnigma1 from "./components/question/SizeComparison1";
+import VisualEnigma2 from "./components/question/SizeComparison2";
 
 export default function QuizPage() {
   const { chapterIndex, questionIndex } = useQuiz();
@@ -28,7 +30,7 @@ export default function QuizPage() {
       </View>
     );
   } else if (question.type === "basic") {
-    view = <StandardQuestion question={question} />;
+    view = <VisualEnigma2 />;
   } else if (question.type === "interactive") {
     view = <question.component />;
   }
