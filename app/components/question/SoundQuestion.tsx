@@ -23,26 +23,11 @@ export default function SoundQuestion() {
   const lastLoudTimeRef = useRef<number | null>(null);
   const clueTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const hasWonRef = useRef(false);
   const [clue, setClue] = useState("");
 
   function onWrongAnswer() {
-    if (hasWonRef.current) return;
     loseLife();
   }
-
-  function displayClue() {
-    setClue("Bonne idée !");
-
-    if (clueTimeoutRef.current) {
-      clearTimeout(clueTimeoutRef.current);
-    }
-
-    clueTimeoutRef.current = setTimeout(() => {
-      setClue("");
-    }, 3000);
-  }
-
   async function stopRecording() {
     try {
       const recording = recordingRef.current;
@@ -60,15 +45,18 @@ export default function SoundQuestion() {
   }
 
   function onGoodWrongAnswer() {
-    if (hasWonRef.current) return;
-    loseLife();
-    displayClue();
+    setClue("Bonne idée !");
+
+    if (clueTimeoutRef.current) {
+      clearTimeout(clueTimeoutRef.current);
+    }
+
+    clueTimeoutRef.current = setTimeout(() => {
+      setClue("");
+    }, 3000);
   }
 
   async function handleWin() {
-    if (hasWonRef.current) return;
-
-    hasWonRef.current = true;
     await stopRecording();
 
     setIsWin(true);
@@ -102,7 +90,7 @@ export default function SoundQuestion() {
         recording.setProgressUpdateInterval(100);
 
         recording.setOnRecordingStatusUpdate((status) => {
-          if (!isMounted || hasWonRef.current || !status.isRecording) return;
+          if (!isMounted || !status.isRecording) return;
 
           const level = status.metering ?? -160;
           const now = Date.now();
