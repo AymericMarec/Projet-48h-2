@@ -3,8 +3,16 @@ import { Text } from "react-native";
 
 type QuestionProps = {
   title: string;
+  variant?: "standard" | "shell";
 };
 
-export default function Question({ title }: QuestionProps) {
-  return <Text style={quizStyles.questionTitle}>{title}</Text>;
+export default function Question({
+  title,
+  variant = "standard",
+}: QuestionProps) {
+  const style =
+    variant === "shell"
+      ? quizStyles.questionTitleInteractive
+      : quizStyles.questionTitle;
+  return <Text style={style}>{title}</Text>;
 }

@@ -1,7 +1,7 @@
 import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { useEffect } from "react";
-import { View,Text, Pressable, Button } from "react-native";
+import { View, Pressable, Button } from "react-native";
 
 export default function DoNotPressQuestion(){
     const { nextQuestion,loseLife } = useQuiz();
@@ -21,7 +21,6 @@ export default function DoNotPressQuestion(){
 
     return (
         <View style={{ flex: 1 }}>
-            <Text>Cliquez le plus rapidement possible sur aucun bouton</Text>
             <Pressable>
                 <Button title="Clique ici" onPress={onClickLoose}/>
             </Pressable>
