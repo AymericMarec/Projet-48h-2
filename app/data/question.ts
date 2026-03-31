@@ -17,9 +17,10 @@ export const questions: Record<string, Array<Question>> = {
         answer: "4",
       },
       {
-        type:"interactive",
+        type: "interactive",
         component: DoNotPressQuestion,
-        needSkipButton: false
+        needSkipButton: false,
+        title: "Cliquez le plus rapidement possible sur aucun bouton",
       }
   ],
 
