@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import React from "react";
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from "react-native";
 import type { ImageSourcePropType } from "react-native";
-import { useAudioPlayer } from "expo-audio";
+import { Audio } from "expo-av";
 
 export type AppButtonVariant = "red" | "blue" | "yellow" | "green";
 
@@ -34,7 +34,12 @@ export default function AppButton({
   const isYellow = variant === "yellow";
   const isGreen = variant === "green";
 
-  const player = useAudioPlayer(require("@/assets/sound/buttonClick.mp3"));
+  async function playClick() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("@/assets/sound/buttonClick.mp3")
+    );
+    await sound.playAsync();
+  }
 
   const pressableStyles = [
     fluid ? styles.baseCore : styles.base,
@@ -87,12 +92,13 @@ export default function AppButton({
     );
 
   return (
-    <Pressable   onPress={() => {
-    player.volume = 1.0;
-    player.seekTo(0);
-    player.play();
-    onClick();
-  }} style={[...pressableStyles, style]}>
+      <Pressable
+        onPress={async () => {
+          await playClick();
+          onClick();
+        }}
+        style={[...pressableStyles, style]}
+      >
       {content}
     </Pressable>
   );
