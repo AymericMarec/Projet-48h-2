@@ -6,10 +6,10 @@ import { quizStyles } from '@/assets/style/quiz.styles';
 
 export default function VisualEnigma1() {
   const Button_data = [
-  { id: 1, size: 55, emoji: '🐘', label: 'petit' },
-  { id: 2, size: 90, emoji: '🐭', label: 'grand' },
-  { id: 3, size: 75, emoji: '🐶', label: 'moyen' },
-  { id: 4, size: 110, emoji: '🐱', label: 'très grand' },
+  { id: 1, size: 60, emoji: '🐘'},
+  { id: 2, size: 90, emoji: '🐭'},
+  { id: 3, size: 80, emoji: '🐶'},
+  { id: 4, size: 110, emoji: '🐱'},
 ];
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const colors = ['red', 'blue', 'yellow', 'green'];
@@ -20,10 +20,9 @@ export default function VisualEnigma1() {
   };
 
   return (
-    <QuizBackground>
     <View style={quizStyles.container}>
       <Text style={quizStyles.questionTitle}>
-        Énigme visuelle – Partie 1
+        Énigme visuelle - Partie 1
       </Text>
       <Text style={quizStyles.title}>
         Consigne : Clique sur le plus petit le plus rapidement possible.
@@ -35,8 +34,6 @@ export default function VisualEnigma1() {
         justifyContent: 'center', 
         width: 280,
         alignItems: 'center',
-
-
       }}>
         {Button_data.map((btn, index) => {
           const colorKey = colors[index % colors.length]; 
@@ -68,6 +65,5 @@ export default function VisualEnigma1() {
         {isCorrect === false && <Text style={[styles.text, {color: 'red'}]}>Perdu !</Text>}
       </View>
     </View>
-    </QuizBackground>
   );
 }
