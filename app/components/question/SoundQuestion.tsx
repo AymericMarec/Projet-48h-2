@@ -139,7 +139,6 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
-      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared
