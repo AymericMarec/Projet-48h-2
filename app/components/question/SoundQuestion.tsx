@@ -143,10 +143,6 @@ export default function SoundQuestion() {
         />
       </View>
 
-      <Text style={styles.text}>
-        Crie dans le téléphone pour faire fuir l'ours
-      </Text>
-
       {win && <Text style={styles.winText}>WIN 🎉</Text>}
     </View>
   );
