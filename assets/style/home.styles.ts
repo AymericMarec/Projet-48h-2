@@ -3,53 +3,49 @@ import { StyleSheet } from "react-native";
 export const indexStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
-    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 24,
     alignItems: "center",
-    position: "relative",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "600",
-    textAlign: "center",
-    marginBottom: 34,
-  },
-  titlePlaceholder: {
-    alignItems: "center",
-    width: "100%",
+    justifyContent: "space-between",
   },
   titleWrapper: {
-    position: "absolute",
-    left: 0,
-    right: 0,
+    width: "100%",
+    marginTop: 85,
     alignItems: "center",
   },
-  settingsButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 8,
-    backgroundColor: "#E5E5E5",
-    marginTop: 26,
+  titleImage: {
+    width: "72%",
+    height: 110,
   },
-  settingsButtonText: {
-    fontSize: 16,
-    fontWeight: "600",
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    gap: 4,
+  },
+  titleLetter: {
+    fontFamily: "CabinetGrotesk",
+    fontSize: 78,
+    lineHeight: 86,
+    fontWeight: "800",
+    color: "#000000",
   },
   seriesButtons: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    width: "65%",
-    gap: 10,
-  },
-  seriesButton: {
     width: "100%",
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderRadius: 10,
-    backgroundColor: "#E5E5E5",
-    alignItems: "center",
+    gap: 20,
+    marginTop:40,
   },
-  seriesButtonText: {
-    fontSize: 18,
-    fontWeight: "700",
+  settingsButton: {
+    marginBottom: 72,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  settingsImage: {
+    width: 60,
+    height: 60,
   },
 });

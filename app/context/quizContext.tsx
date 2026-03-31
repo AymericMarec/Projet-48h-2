@@ -41,7 +41,7 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
 
   function reset() {
     setLives(3);
-    setChapterIndex(0);
+    setChapterIndex(1);
     setQuestionIndex(0);
   }
 

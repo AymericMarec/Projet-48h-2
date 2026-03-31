@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { View, Image, Animated } from "react-native";
-import { endStyles as styles } from "../../assets/style/end.styles";
+import { endStyles as styles } from "../../../assets/style/end.styles";
 
 type EndComponentProps = {
   isWin?: boolean;
@@ -23,8 +23,8 @@ export function EndComponent({ isWin = false }: EndComponentProps) {
         <Image
           source={
             isWin
-              ? require("../../assets/questions/WIN.png")
-              : require("../../assets/questions/LOOSE.png")
+              ? require("../../../assets/questions/WIN.png")
+              : require("../../../assets/questions/LOOSE.png")
           }
           style={styles.image}
           resizeMode="contain"

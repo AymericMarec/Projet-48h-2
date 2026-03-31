@@ -4,7 +4,8 @@ import { useQuiz } from "@/app/context/quizContext";
 import { BasicQuestion } from "@/app/types/quiz";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 type Props = {
   question: BasicQuestion;
@@ -36,6 +37,7 @@ export default function StandardQuestion({ question }: Props) {
           justifyContent: "center",
           minHeight: 0,
           width: "100%",
+          alignItems: "center",
         }}
       >
         <Answers
@@ -49,9 +51,9 @@ export default function StandardQuestion({ question }: Props) {
       {isCorrectAnswer !== null && (
         <View style={{ marginTop: 16, alignItems: "center" }}>
           {isCorrectAnswer ? (
-            <Text>Bonne réponse</Text>
+            <AppText>Bonne réponse</AppText>
           ) : (
-            <Text>Mauvaise réponse</Text>
+            <AppText>Mauvaise réponse</AppText>
           )}
         </View>
       )}

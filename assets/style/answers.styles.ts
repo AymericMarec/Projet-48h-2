@@ -2,10 +2,11 @@ import { StyleSheet } from "react-native";
 
 export const answersStyles = StyleSheet.create({
   columnContainer: {
-    width: "100%",
+    width: "80%",
     flexDirection: "column",
-    gap: 14,
-    alignItems: "stretch",
+    gap: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   gridContainer: {
     width: "100%",

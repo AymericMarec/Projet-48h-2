@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, Pressable, View, Text } from "react-native";
+import { Button, Pressable, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 export default function DoorBellQuestion(){
     function win(){
@@ -8,9 +9,9 @@ export default function DoorBellQuestion(){
 
     return (
         <View>
-            <Text>Il y a quelqu’un ?</Text>
+            <AppText>Il y a quelqu’un ?</AppText>
             <Pressable onLongPress={win}>
-                <Text>.</Text>
+                <AppText>.</AppText>
             </Pressable>
         </View>
     )

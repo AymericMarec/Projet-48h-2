@@ -1,7 +1,8 @@
 import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import React from "react";
-import { PanResponder, Text, View } from "react-native";
+import { PanResponder, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 export default function SwipeZone() {
     const { nextQuestion,loseLife } = useQuiz();
 
@@ -33,8 +34,8 @@ export default function SwipeZone() {
       }}
     >
      
-            <Text>Glisse vers la gauche</Text>
-            <Text>➡️</Text>
+            <AppText>Glisse vers la gauche</AppText>
+            <AppText>➡️</AppText>
     </View>
   );
 }

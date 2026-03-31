@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useQuiz } from "@/app/context/quizContext";
 import { quizStyles } from "@/assets/style/quiz.styles";
 
 const TOTAL_LIVES = 3;
-const HEART_SIZE = 44;
-const FULL_HEART_COLOR = "#C5426A";
-const BROKEN_HEART_COLOR = "#C5426A";
+const HEART_SIZE = 35;
+const FULL_HEART_SOURCE = require("../../../assets/questions/heart-bold.png");
+const BROKEN_HEART_SOURCE = require("../../../assets/questions/heart-broken-bold.png");
 
 type HeartState = "full" | "broken" | "empty";
 
@@ -101,18 +101,18 @@ export default function LivesIndicator() {
             return <View key={index} style={quizStyles.heartSlot} />;
           }
 
-          const iconName = state === "broken" ? "heart-broken" : "heart";
-          const color = state === "broken" ? BROKEN_HEART_COLOR : FULL_HEART_COLOR;
+          const heartSource =
+            state === "broken" ? BROKEN_HEART_SOURCE : FULL_HEART_SOURCE;
 
           return (
             <Animated.View
               key={index}
               style={[quizStyles.heartSlot, { opacity: opacityValues[index] }]}
             >
-              <MaterialCommunityIcons
-                name={iconName}
-                size={HEART_SIZE}
-                color={color}
+              <Image
+                source={heartSource}
+                style={{ width: HEART_SIZE, height: HEART_SIZE }}
+                contentFit="contain"
               />
             </Animated.View>
           );

@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   base: {
-    height: 60,
-    width: 258,
+    height: 69,
+    width: 260,
     borderRadius: 8,
     borderWidth: 4,
     alignItems: "center",
@@ -43,8 +43,9 @@ export const styles = StyleSheet.create({
 
   text: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
     color: "black",
+    textAlign: "center",  
   },
 
   redText: {
