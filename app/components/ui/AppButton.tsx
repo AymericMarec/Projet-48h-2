@@ -3,6 +3,7 @@ import { answersStyles } from "@/assets/style/answers.styles";
 import { Image } from "expo-image";
 import React from "react";
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from "react-native";
+import type { ImageSourcePropType } from "react-native";
 
 export type AppButtonVariant = "red" | "blue" | "yellow" | "green";
 
@@ -10,7 +11,7 @@ type AppButtonProps = {
   onClick: () => void;
   text: string;
   variant?: AppButtonVariant;
-  img?: string;
+  img?: ImageSourcePropType;
   /** true : image au-dessus du texte (ex. grille carrée) ; false : vignette à gauche (liste) */
   imageAbove?: boolean;
   /** Sans largeur/hauteur fixes (ex. liste pleine largeur ou tuiles carrées) */
@@ -59,7 +60,7 @@ export default function AppButton({
         }}
       >
         <Image
-          source={{ uri: img }}
+          source={img}
           style={answersStyles.squaredImage}
           contentFit="cover"
         />
@@ -70,7 +71,7 @@ export default function AppButton({
     ) : img ? (
       <View style={answersStyles.listInnerRow}>
         <Image
-          source={{ uri: img }}
+          source={img}
           style={answersStyles.listThumb}
           contentFit="cover"
         />
