@@ -1,6 +1,7 @@
 import { Audio } from "expo-av";
 import React, { useEffect, useRef, useState } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SoundQuestion() {
   const [bgColor, setBgColor] = useState("white");
