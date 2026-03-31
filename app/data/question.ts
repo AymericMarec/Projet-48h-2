@@ -15,7 +15,8 @@ export const questions: Record<string, Array<Question>> = {
       {
         type:"interactive",
         component: SoundQuestion,
-        needSkipButton: false
+        needSkipButton: false,
+        title: "Fais fuir l'ours",
       },
       {
         type:"basic",

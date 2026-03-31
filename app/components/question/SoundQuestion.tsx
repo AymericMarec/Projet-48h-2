@@ -1,5 +1,4 @@
 import Answers from "@/app/components/ui/Answers";
-import Question from "@/app/components/ui/Question";
 import { useQuiz } from "@/app/context/quizContext";
 import { Audio } from "expo-av";
 import { router } from "expo-router";
@@ -132,8 +131,6 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
-      <Question title="Fais fuir l'ours" />
-
       <View style={styles.answersContainer}>
         <Answers
           squared
