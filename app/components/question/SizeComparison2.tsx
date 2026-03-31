@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '@/assets/style/button.styles';
-import { QuizBackground } from '../ui/QuizBackground';
 import { quizStyles } from '@/assets/style/quiz.styles';
 
 export default function VisualEnigma2() {

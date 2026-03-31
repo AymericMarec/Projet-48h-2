@@ -7,7 +7,7 @@ import { useQuiz } from "@/app/context/quizContext"
 
 import { QuizBackground } from "./components/ui/QuizBackground";
 import AppButton from "./components/ui/AppButton";
-
+import VisualEnigma from "./components/question/SizeComparison1";
 export default function Index() {
   const { chooseChapter } = useQuiz();
 
@@ -20,6 +20,7 @@ export default function Index() {
   }, [seriesButtonsTop, titleHeight]);
 
   return (
+<<<<<<< HEAD
     <QuizBackground>
     <SafeAreaView style={indexStyles.container}>
       <View
@@ -69,5 +70,8 @@ export default function Index() {
       </Pressable>
     </SafeAreaView>
     </QuizBackground>
+=======
+   <VisualEnigma />
+>>>>>>> bccff9b (Fix ui sizecomparison1)
   );
 }
