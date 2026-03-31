@@ -5,6 +5,8 @@ export type BasicQuestion = {
     options:Array<string>
     answer:string
     type:"basic"
+    /** Affichage grille 2×2 carrée si true ; liste verticale sinon */
+    squared?: boolean
 }
 export type InteractiveQuestion = {
     component:ComponentType

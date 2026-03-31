@@ -1,8 +1,10 @@
+import Answers from "@/app/components/ui/Answers";
+import Question from "@/app/components/ui/Question";
 import { useQuiz } from "@/app/context/quizContext";
-import { BasicQuestion, Question } from "@/app/types/quiz";
+import { BasicQuestion } from "@/app/types/quiz";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 type Props = {
   question: BasicQuestion;
@@ -13,7 +15,7 @@ export default function StandardQuestion({ question }: Props) {
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean | null>(null);
 
   function CheckAnswer(answer: string) {
-    if (answer != question.answer) {
+    if (answer !== question.answer) {
       setIsCorrectAnswer(false);
       loseLife();
       return;
@@ -25,32 +27,34 @@ export default function StandardQuestion({ question }: Props) {
     router.push(`/quiz`);
   }
 
-  if (!question) {
-    return (
-      <View>
-        <Text>Question introuvable</Text>
-      </View>
-    );
-  }
-
   return (
-    <View>
-      <Text>{question.question}</Text>
-      <View>
-        {question.options.map((option) => (
-          <Pressable key={option} onPress={() => CheckAnswer(option)}>
-            <Text>{option}</Text>
-          </Pressable>
-        ))}
+    <View style={{ width: "100%", flex: 1, alignItems: "stretch" }}>
+      <Question title={question.question} />
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          minHeight: 0,
+          width: "100%",
+        }}
+      >
+        <Answers
+          squared={question.squared}
+          options={question.options.map((opt) => ({
+            title: opt,
+            onClick: () => CheckAnswer(opt),
+          }))}
+        />
       </View>
-      <View>
-        {isCorrectAnswer !== null &&
-          (isCorrectAnswer ? (
+      {isCorrectAnswer !== null && (
+        <View style={{ marginTop: 16, alignItems: "center" }}>
+          {isCorrectAnswer ? (
             <Text>Bonne réponse</Text>
           ) : (
             <Text>Mauvaise réponse</Text>
-          ))}
-      </View>
+          )}
+        </View>
+      )}
     </View>
   );
 }

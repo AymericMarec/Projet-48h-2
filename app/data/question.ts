@@ -8,6 +8,7 @@ export const questions: Record<string, Array<Question>> = {
           question: "Capitale de la France ?",
           options: ["Paris", "Lyon", "Marseille", "Bordeaux"],
           answer: "Paris",
+          // squared: true,
       },
       {
         type:"basic",
