@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 import { router } from "expo-router";
 import { indexStyles } from "../assets/style/home.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useQuiz } from "@/app/context/quizContext";
+import { useQuiz } from "@/app/context/quizContext"
 import { Image } from "expo-image";
 
 import { QuizBackground } from "./components/ui/QuizBackground";

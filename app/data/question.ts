@@ -5,6 +5,7 @@ import HiddenCat from "../components/question/HiddenCat";
 import DoorBellQuestion from "../components/question/DoorBellQuestion";
 import ShakeQuestion from "../components/question/ShakeQuestion";
 import DeficientButton from "../components/question/DeficientButton";
+import SwipeQuestion from "../components/question/SwipeQuestion";
 
 const mappingQuestion:Record<string,Question> = {
     "BearQuestion" : {
@@ -39,7 +40,7 @@ const mappingQuestion:Record<string,Question> = {
     },
     "SwipeQuestion" : {
         type: "interactive",
-        component: ShakeQuestion,
+        component: SwipeQuestion,
         needSkipButton: false,
         title: "Glisse vers la gauche",
     },

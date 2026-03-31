@@ -18,31 +18,17 @@ const TOLERANCE = 600; // tolère les trous (-160)
 export default function SoundQuestion() {
   const { loseLife, nextQuestion } = useQuiz();
 
+  const [isWin, setIsWin] = useState<boolean | null>(null);
   const recordingRef = useRef<Audio.Recording | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const lastLoudTimeRef = useRef<number | null>(null);
   const clueTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const hasWonRef = useRef(false);
   const [clue, setClue] = useState("");
 
   function onWrongAnswer() {
-    if (hasWonRef.current) return;
     loseLife();
   }
-
-  function displayClue() {
-    setClue("Bonne idée !");
-
-    if (clueTimeoutRef.current) {
-      clearTimeout(clueTimeoutRef.current);
-    }
-
-    clueTimeoutRef.current = setTimeout(() => {
-      setClue("");
-    }, 3000);
-  }
-
   async function stopRecording() {
     try {
       const recording = recordingRef.current;
@@ -60,17 +46,23 @@ export default function SoundQuestion() {
   }
 
   function onGoodWrongAnswer() {
-    if (hasWonRef.current) return;
-    loseLife();
-    displayClue();
+    setClue("Bonne idée !");
+
+    if (clueTimeoutRef.current) {
+      clearTimeout(clueTimeoutRef.current);
+    }
+
+    clueTimeoutRef.current = setTimeout(() => {
+      setClue("");
+    }, 3000);
   }
 
   async function handleWin() {
-    if (hasWonRef.current) return;
-
-    hasWonRef.current = true;
-
     await stopRecording();
+
+    setIsWin(true);
+    await new Promise((r) => setTimeout(r, 2000));
+
     nextQuestion();
     router.push("/quiz");
   }
@@ -99,7 +91,7 @@ export default function SoundQuestion() {
         recording.setProgressUpdateInterval(100);
 
         recording.setOnRecordingStatusUpdate((status) => {
-          if (!isMounted || hasWonRef.current || !status.isRecording) return;
+          if (!isMounted || !status.isRecording) return;
 
           const level = status.metering ?? -160;
           const now = Date.now();
@@ -147,6 +139,7 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
+      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared

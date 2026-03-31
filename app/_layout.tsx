@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { QuizProvider } from "./context/quizContext";
+import MusicPlayer from "@/app/components/sound/MusicPlayer";
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +29,7 @@ export default function RootLayout() {
 
   return (
   <QuizProvider>
+    <MusicPlayer/>
     <Stack screenOptions={{ headerShown: false, animation: "none" }} />
   </QuizProvider>
   );

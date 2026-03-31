@@ -15,6 +15,7 @@ const REQUIRED_TIME = 500;
 export default function LightQuestion() {
   const { loseLife, nextQuestion } = useQuiz();
 
+  const [isWin, setIsWin] = useState<boolean | null>(null);
   const [clue, setClue] = useState("");
   const darkStartRef = useRef<number | null>(null);
   const hasWonRef = useRef(false);
@@ -48,10 +49,11 @@ export default function LightQuestion() {
 
     hasWonRef.current = true;
 
+    setIsWin(true);
     setTimeout(() => {
       nextQuestion();
       router.push("/quiz");
-    }, 500);
+    }, 2000);
   }
 
   useEffect(() => {
@@ -99,6 +101,7 @@ export default function LightQuestion() {
 
   return (
     <View style={styles.container}>
+      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared={false}

@@ -15,7 +15,7 @@ export default function StandardQuestion({ question }: Props) {
   const { nextQuestion, loseLife } = useQuiz();
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean | null>(null);
 
-  function CheckAnswer(answer: string) {
+  async function CheckAnswer(answer: string) {
     if (answer !== question.answer) {
       setIsCorrectAnswer(false);
       loseLife();
@@ -23,7 +23,8 @@ export default function StandardQuestion({ question }: Props) {
     }
 
     setIsCorrectAnswer(true);
-    // RAJOUTER ANIMATION
+    await new Promise((r) => setTimeout(r, 2000));
+
     nextQuestion();
     router.push(`/quiz`);
   }
@@ -48,15 +49,6 @@ export default function StandardQuestion({ question }: Props) {
           }))}
         />
       </View>
-      {isCorrectAnswer !== null && (
-        <View style={{ marginTop: 16, alignItems: "center" }}>
-          {isCorrectAnswer ? (
-            <AppText>Bonne réponse</AppText>
-          ) : (
-            <AppText>Mauvaise réponse</AppText>
-          )}
-        </View>
-      )}
     </View>
   );
 }
