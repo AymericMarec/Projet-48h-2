@@ -1,6 +1,7 @@
 import { Question } from "@/app/types/quiz";
 import DoNotPressQuestion from "../components/question/DoNotPressQuestion";
 import SoundQuestion from "../components/question/SoundQuestion";
+import HiddenCat from "../components/question/HiddenCat";
 
 export const questions: Record<string, Array<Question>> = {
     "1": [ // Série de question numero un
@@ -24,7 +25,7 @@ export const questions: Record<string, Array<Question>> = {
       },
       {
         type:"interactive",
-        component: DoNotPressQuestion,
+        component: HiddenCat,
         needSkipButton: false
       }
   ],
