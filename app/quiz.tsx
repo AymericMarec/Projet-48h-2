@@ -9,9 +9,12 @@ import { quizStyles } from "../assets/style/quiz.styles";
 import LivesIndicator from "./components/ui/LivesIndicator";
 import LongPressSkippableTitle from "./components/ui/LongPressSkippableTitle";
 import Question from "./components/ui/Question";
+import { EndComponent } from "./components/EndComponent";
 
 export default function QuizPage() {
-  const { chapterIndex, questionIndex } = useQuiz();
+  const { chapterIndex, questionIndex, lives } = useQuiz();
+  const isLoose = lives <= 0;
+  const isWin = questionIndex == 10;
 
   const question = useQuestion(String(chapterIndex), questionIndex);
 
@@ -34,11 +37,11 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground>
+    <QuizBackground variant={isLoose ? "loose" : isWin ? "win" : undefined}>
       <SafeAreaView style={quizStyles.container}>
-        <LivesIndicator />
+        {!isLoose && !isWin && <LivesIndicator />}
         <View style={{ flex: 1, width: "100%", minHeight: 0 }}>
-          {question?.type === "interactive" && (
+          {!isLoose && !isWin && question?.type === "interactive" && (
             <View style={quizStyles.interactiveTitleSlot}>
               {question.needSkipButton ? (
                 <LongPressSkippableTitle title={question.title} />
@@ -56,7 +59,7 @@ export default function QuizPage() {
               minHeight: 0,
             }}
           >
-            {view}
+            {isLoose || isWin ? <EndComponent isWin={isWin} /> : view}
           </View>
         </View>
       </SafeAreaView>
