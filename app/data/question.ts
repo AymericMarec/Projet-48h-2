@@ -46,10 +46,11 @@ const mappingQuestion:Record<string,Question> = {
         needSkipButton: false,
         title: "Glisse vers la gauche",
     },
+    
     "DeficientButton" : {
         type: "interactive",
         component: DeficientButton,
-        needSkipButton: false,
+        needSkipButton: true,
         title: "Clique sur le bon bouton",
     },
     "MonthsQuestion" : {

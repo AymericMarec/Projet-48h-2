@@ -43,7 +43,10 @@ export default function QuizPage() {
   if (!question) {
     view = (
       <View>
-        <Text>aucune question trouvé avec chapitre : {chapterIndex} et question numero : {questionIndex}</Text>
+        <AppText>
+          aucune question trouvé avec chapitre : {chapterIndex} et question
+          numero : {questionIndex}
+        </AppText>
       </View>
     );
   } else if (question.type === "basic") {

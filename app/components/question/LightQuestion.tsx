@@ -5,6 +5,7 @@ import { LightSensor } from "expo-sensors";
 import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import AppText from "@/app/components/ui/AppText";
+import { quizStyles } from "@/assets/style/quiz.styles";
 
 const image1 = require("../../../assets/questions/light_1.jpg");
 const image2 = require("../../../assets/questions/light_2.jpg");
@@ -101,7 +102,13 @@ export default function LightQuestion() {
 
   return (
     <View style={styles.container}>
-      {isWin && <Text>Bravo , bonne réponse</Text>}
+      {isWin && (
+        <View style={quizStyles.winMessageSlot} pointerEvents="none">
+          <AppText style={[quizStyles.winMessageText, styles.winMessageOnDark]}>
+            Bravo , bonne réponse
+          </AppText>
+        </View>
+      )}
       <View style={styles.answersContainer}>
         <Answers
           squared={false}
@@ -131,6 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    position: "relative",
   },
   answersContainer: {
     flex: 1,
@@ -151,5 +159,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     transform: [{ translateY: -50 }],
+  },
+  winMessageOnDark: {
+    color: "#fff",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
 });

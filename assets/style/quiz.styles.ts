@@ -64,5 +64,21 @@ export const quizStyles = StyleSheet.create({
     marginBottom: 4,
     paddingHorizontal: 0,
   },
+  /** Message « bonne réponse » : collé en haut de la zone question interactive. */
+  winMessageSlot: {
+    position: "absolute",
+    top: 4,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    zIndex: 50,
+    paddingHorizontal: 16,
+  },
+  winMessageText: {
+    fontSize: 22,
+    fontWeight: "700",
+    textAlign: "center",
+    color: "#111",
+  },
 });
 

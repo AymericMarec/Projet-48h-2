@@ -33,7 +33,7 @@ export default function SwipeZone() {
         alignItems: "center",
       }}
     >
-       <Text style={{ fontSize: 80 }}>➡️</Text>
+      <AppText style={{ fontSize: 80 }}>➡️</AppText>
     </View>
   );
 }
