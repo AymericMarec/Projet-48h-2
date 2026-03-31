@@ -1,4 +1,5 @@
 import { useQuiz } from "@/app/context/quizContext";
+import { router } from "expo-router";
 import { Accelerometer } from "expo-sensors";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -32,6 +33,7 @@ function randomBetween(min: number, max: number) {
 
 export default function ShakeQuestion() {
   const { loseLife, nextQuestion } = useQuiz();
+  const [isWin, setIsWin] = useState<boolean | null>(null);
 
   const [won, setWon] = useState(false);
 
@@ -98,7 +100,7 @@ export default function ShakeQuestion() {
     ]).start();
   }
 
-  function handleWin() {
+  async function handleWin() {
     if (hasWonRef.current) return;
 
     hasWonRef.current = true;
@@ -133,7 +135,11 @@ export default function ShakeQuestion() {
     });
 
     Animated.parallel(animations).start(() => {
-      nextQuestion();
+      setIsWin(true);
+      setTimeout(() => {
+        nextQuestion();
+        router.push("/quiz");
+      }, 2000);
     });
   }
 

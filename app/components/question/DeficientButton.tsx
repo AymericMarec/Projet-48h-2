@@ -1,19 +1,25 @@
 import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
+import { useState } from "react";
 import { Button, Pressable, View } from "react-native";
 
 export default function DeficientButton(){
     const { nextQuestion,loseLife } = useQuiz();
+    const [isWin, setIsWin] = useState<boolean | null>(null);
+    
     let pushCount = 0
 
     function loose(){
         loseLife()
     }
-    function push(){
+    async function push(){
         pushCount+=1
         if(pushCount >= 10){
-            nextQuestion()
-            router.push(`/quiz`)
+        setIsWin(true);
+            await new Promise((r) => setTimeout(r, 2000));
+        
+            nextQuestion();
+            router.push("/quiz");
         }
     }
 
