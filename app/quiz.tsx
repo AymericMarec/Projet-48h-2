@@ -33,7 +33,7 @@ export default function QuizPage() {
   }, [hasEnded, reset, router]);
 
   const question = useQuestion(String(chapterIndex), questionIndex);
-
+  
   let view: ReactNode = (
     <View>
       <AppText>Init</AppText>
@@ -43,7 +43,7 @@ export default function QuizPage() {
   if (!question) {
     view = (
       <View>
-        <AppText>aucune question trouvé</AppText>
+        <Text>aucune question trouvé avec chapitre : {chapterIndex} et question numero : {questionIndex}</Text>
       </View>
     );
   } else if (question.type === "basic") {
