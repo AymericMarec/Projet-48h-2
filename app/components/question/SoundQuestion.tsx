@@ -1,5 +1,4 @@
 import Answers from "@/app/components/ui/Answers";
-import Question from "@/app/components/ui/Question";
 import { useQuiz } from "@/app/context/quizContext";
 import { Audio } from "expo-av";
 import { router } from "expo-router";
@@ -18,16 +17,29 @@ const TOLERANCE = 600; // tolère les trous (-160)
 export default function SoundQuestion() {
   const { loseLife, nextQuestion } = useQuiz();
 
-  const [win, setWin] = useState(false);
-
   const recordingRef = useRef<Audio.Recording | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const lastLoudTimeRef = useRef<number | null>(null);
+  const clueTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const hasWonRef = useRef(false);
+  const [clue, setClue] = useState("");
 
   function onWrongAnswer() {
     if (hasWonRef.current) return;
     loseLife();
+  }
+
+  function displayClue() {
+    setClue("Bonne idée !");
+
+    if (clueTimeoutRef.current) {
+      clearTimeout(clueTimeoutRef.current);
+    }
+
+    clueTimeoutRef.current = setTimeout(() => {
+      setClue("");
+    }, 3000);
   }
 
   async function stopRecording() {
@@ -46,11 +58,16 @@ export default function SoundQuestion() {
     }
   }
 
+  function onGoodWrongAnswer() {
+    if (hasWonRef.current) return;
+    loseLife();
+    displayClue();
+  }
+
   async function handleWin() {
     if (hasWonRef.current) return;
 
     hasWonRef.current = true;
-    setWin(true);
 
     await stopRecording();
     nextQuestion();
@@ -86,7 +103,6 @@ export default function SoundQuestion() {
           const level = status.metering ?? -160;
           const now = Date.now();
 
-          // 🔊 bruit détecté
           if (level > THRESHOLD) {
             lastLoudTimeRef.current = now;
 
@@ -103,7 +119,6 @@ export default function SoundQuestion() {
             return;
           }
 
-          // 🧠 tolérance aux trous (-160)
           if (
             lastLoudTimeRef.current !== null &&
             now - lastLoudTimeRef.current <= TOLERANCE
@@ -111,7 +126,6 @@ export default function SoundQuestion() {
             return;
           }
 
-          // ❌ reset si vraiment silence prolongé
           startTimeRef.current = null;
           lastLoudTimeRef.current = null;
         });
@@ -132,25 +146,18 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
-      <Question title="Fais fuir l'ours" />
-
       <View style={styles.answersContainer}>
         <Answers
           squared
           options={[
-            { title:"Nerf", onClick: onWrongAnswer, img: sound1 },
-            { title:"Miel", onClick: onWrongAnswer, img: sound2 },
-            { title:"Crier fort", onClick: onWrongAnswer, img: sound3 },
-            { title:"Tronçonneuse", onClick: onWrongAnswer, img: sound4 },
+            { title: "Nerf", onClick: onWrongAnswer, img: sound1 },
+            { title: "Miel", onClick: onWrongAnswer, img: sound2 },
+            { title: "Crier fort", onClick: onGoodWrongAnswer, img: sound3 },
+            { title: "Tronçonneuse", onClick: onWrongAnswer, img: sound4 },
           ]}
         />
       </View>
-
-      <Text style={styles.text}>
-        Crie dans le téléphone pour faire fuir l'ours
-      </Text>
-
-      {win && <Text style={styles.winText}>WIN 🎉</Text>}
+      {!!clue && <Text style={styles.clue}>{clue}</Text>}
     </View>
   );
 }
@@ -180,5 +187,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     marginBottom: 16,
+  },
+  clue: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "black",
+    transform: [{ translateY: -50 }],
   },
 });
