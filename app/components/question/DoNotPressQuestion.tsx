@@ -2,6 +2,7 @@ import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { View, Pressable, Button,Text } from "react-native";
+import AppButton from "@/app/components/ui/AppButton";
 
 export default function DoNotPressQuestion(){
     const { nextQuestion,loseLife } = useQuiz();
@@ -11,8 +12,8 @@ export default function DoNotPressQuestion(){
         const timer = setTimeout(() => {
             setIsWin(true);
             setTimeout(() => {
-            nextQuestion();
-            router.push("/quiz");
+                nextQuestion();
+                router.push("/quiz");
             }, 2000);
         }, 5000);
 
@@ -24,11 +25,13 @@ export default function DoNotPressQuestion(){
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             {isWin && <Text>Bravo , bonne réponse</Text>}
-            <Pressable>
-                <Button title="Clique ici" onPress={onClickLoose}/>
-            </Pressable>
+            <AppButton
+                onClick={onClickLoose}
+                text={"Clique ici"}
+                variant="red"
+            />
         </View>
     )
 }
