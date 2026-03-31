@@ -46,5 +46,21 @@ export const quizStyles = StyleSheet.create({
     width: "100%",
     transform: [{ translateY: 60 }],
   },
+  /** Titre des questions interactives (zone quiz, sans translateY pour éviter les chevauchements). */
+  questionTitleInteractive: {
+    fontSize: 26,
+    fontWeight: "700",
+    textAlign: "center",
+    color: "#000",
+    marginBottom: 12,
+    paddingHorizontal: 8,
+    width: "100%",
+  },
+  interactiveTitleSlot: {
+    width: "100%",
+    flexShrink: 0,
+    marginBottom: 4,
+    paddingHorizontal: 0,
+  },
 });
 

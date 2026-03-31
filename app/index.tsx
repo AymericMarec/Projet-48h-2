@@ -20,53 +20,53 @@ export default function Index() {
 
   return (
     <QuizBackground>
-    <SafeAreaView style={indexStyles.container}>
-      <View
-        style={indexStyles.titlePlaceholder}
-        pointerEvents="none"
-        onLayout={(e: LayoutChangeEvent) => {
-          setTitleHeight(e.nativeEvent.layout.height);
-        }}
-      >
-        <Text style={[indexStyles.title, { opacity: 0 }]}>Quizz</Text>
-      </View>
+      <SafeAreaView style={indexStyles.container}>
+        <View
+          style={indexStyles.titlePlaceholder}
+          pointerEvents="none"
+          onLayout={(e: LayoutChangeEvent) => {
+            setTitleHeight(e.nativeEvent.layout.height);
+          }}
+        >
+          <Text style={[indexStyles.title, { opacity: 0 }]}>Quizz</Text>
+        </View>
 
-      <View
-        style={[indexStyles.titleWrapper, { top: titleTop }]}
-        pointerEvents="none"
-      >
-        <Text style={[indexStyles.title, { marginBottom: 0 }]}>Quizz</Text>
-      </View>
+        <View
+          style={[indexStyles.titleWrapper, { top: titleTop }]}
+          pointerEvents="none"
+        >
+          <Text style={[indexStyles.title, { marginBottom: 0 }]}>Quizz</Text>
+        </View>
 
-      <View
-        style={indexStyles.seriesButtons}
-        onLayout={(e: LayoutChangeEvent) => {
-          setSeriesButtonsTop(e.nativeEvent.layout.y);
-        }}
-      >
-        {[1, 2, 3].map((n) => (
-          <AppButton
-            key={n}
-            onClick={() => {
-              chooseChapter(n)
-              router.push(`/quiz`);
-            }}
-            text="chapter"
-            variant="yellow"
-          />
-        ))}
-      </View>
+        <View
+          style={indexStyles.seriesButtons}
+          onLayout={(e: LayoutChangeEvent) => {
+            setSeriesButtonsTop(e.nativeEvent.layout.y);
+          }}
+        >
+          {[1, 2, 3].map((n) => (
+            <AppButton
+              key={n}
+              onClick={() => {
+                chooseChapter(n);
+                router.push(`/quiz`);
+              }}
+              text="chapter"
+              variant="yellow"
+            />
+          ))}
+        </View>
 
-      <Pressable
-        accessibilityRole="button"
-        style={indexStyles.settingsButton}
-        onPress={() => {
-          // No-op pour l'instant : le comportement du bouton Settings sera ajouté plus tard.
-        }}
-      >
-        <Text style={indexStyles.settingsButtonText}>Settings</Text>
-      </Pressable>
-    </SafeAreaView>
+        <Pressable
+          accessibilityRole="button"
+          style={indexStyles.settingsButton}
+          onPress={() => {
+            // No-op pour l'instant : le comportement du bouton Settings sera ajouté plus tard.
+          }}
+        >
+          <Text style={indexStyles.settingsButtonText}>Settings</Text>
+        </Pressable>
+      </SafeAreaView>
     </QuizBackground>
   );
 }

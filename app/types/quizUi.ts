@@ -1,5 +1,7 @@
+import type { ImageSourcePropType } from "react-native";
+
 export type Option = {
   title: string;
-  img?: string;
+  img?: ImageSourcePropType;
   onClick: () => void;
 };
