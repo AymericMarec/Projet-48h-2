@@ -1,5 +1,4 @@
 import Answers from "@/app/components/ui/Answers";
-import Question from "@/app/components/ui/Question";
 import { useQuiz } from "@/app/context/quizContext";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { Image as ExpoImage } from "expo-image";
@@ -141,7 +140,6 @@ export default function FindWhiteQuestion() {
 
   return (
     <View style={styles.screen}>
-      <Question title="Montre moi la couleur du cheval blanc d'Henry IV" />
 
       <View style={styles.answersContainer}>
         <Answers
