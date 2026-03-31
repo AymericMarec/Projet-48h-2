@@ -36,5 +36,15 @@ export const quizStyles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
   },
+  questionTitle: {
+    fontSize: 26,
+    fontWeight: "700",
+    textAlign: "center",
+    color: "#000",
+    marginBottom: 24,
+    paddingHorizontal: 8,
+    width: "100%",
+    transform: [{ translateY: 60 }],
+  },
 });
 

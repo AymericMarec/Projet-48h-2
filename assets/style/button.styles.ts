@@ -1,6 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  /** Bordure et coins communs ; sans taille fixe (réponses quiz, etc.) */
+  baseCore: {
+    borderRadius: 8,
+    borderWidth: 4,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   base: {
     height: 60,
     width: 258,
@@ -28,6 +35,12 @@ export const styles = StyleSheet.create({
     boxShadow: "5px 5px 0px #594A16",
   },
 
+  green: {
+    backgroundColor: "#78A752",
+    borderColor: "#2D4A22",
+    boxShadow: "5px 5px 0px #2D4A22",
+  },
+
   text: {
     fontSize: 20,
     fontWeight: "bold",
@@ -42,5 +55,8 @@ export const styles = StyleSheet.create({
   },
   yellowText: {
     color: "#403510",
+  },
+  greenText: {
+    color: "#1E3518",
   },
 });
