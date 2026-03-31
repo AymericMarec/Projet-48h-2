@@ -17,6 +17,7 @@ const TOLERANCE = 600; // tolère les trous (-160)
 export default function SoundQuestion() {
   const { loseLife, nextQuestion } = useQuiz();
 
+  const [isWin, setIsWin] = useState<boolean | null>(null);
   const recordingRef = useRef<Audio.Recording | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const lastLoudTimeRef = useRef<number | null>(null);
@@ -57,6 +58,10 @@ export default function SoundQuestion() {
 
   async function handleWin() {
     await stopRecording();
+
+    setIsWin(true);
+    await new Promise((r) => setTimeout(r, 2000));
+
     nextQuestion();
     router.push("/quiz");
   }
@@ -133,6 +138,7 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
+      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared
