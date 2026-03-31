@@ -1,20 +1,61 @@
+import Answers from "@/app/components/ui/Answers";
+import { useQuiz } from "@/app/context/quizContext";
+import { router } from "expo-router";
 import { LightSensor } from "expo-sensors";
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, Text, View } from "react-native";
+
+const image1 = require("../../../assets/questions/light_1.jpg");
+const image2 = require("../../../assets/questions/light_2.jpg");
+
+const WIN_THRESHOLD = 65;
+const REQUIRED_TIME = 500;
 
 export default function LightQuestion() {
-  const [lux, setLux] = useState(1000);
-  const [bgColor, setBgColor] = useState("white");
-  const [win, setWin] = useState(false);
+  const { loseLife, nextQuestion } = useQuiz();
 
+  const [clue, setClue] = useState("");
   const darkStartRef = useRef<number | null>(null);
+  const hasWonRef = useRef(false);
+  const clueTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const RED_THRESHOLD = 150; // faible luminosité
-  const WIN_THRESHOLD = 65; // quasi noir
-  const REQUIRED_TIME = 0; // 1 seconde
+  function displayClue() {
+    setClue("Bonne idée !");
+
+    if (clueTimeoutRef.current) {
+      clearTimeout(clueTimeoutRef.current);
+    }
+
+    clueTimeoutRef.current = setTimeout(() => {
+      setClue("");
+    }, 3000);
+  }
+
+  function onGoodWrongAnswer() {
+    if (hasWonRef.current) return;
+    loseLife();
+    displayClue();
+  }
+
+  function onWrongAnswer() {
+    if (hasWonRef.current) return;
+    loseLife();
+  }
+
+  function handleWin() {
+    if (hasWonRef.current) return;
+
+    hasWonRef.current = true;
+
+    setTimeout(() => {
+      nextQuestion();
+      router.push("/quiz");
+    }, 500);
+  }
 
   useEffect(() => {
+    let subscription: { remove: () => void } | undefined;
+
     const start = async () => {
       const isAvailable = await LightSensor.isAvailableAsync();
 
@@ -25,77 +66,86 @@ export default function LightQuestion() {
 
       LightSensor.setUpdateInterval(200);
 
-      const subscription = LightSensor.addListener(({ illuminance }) => {
-        if (win) return;
+      subscription = LightSensor.addListener(({ illuminance }) => {
+        if (hasWonRef.current) return;
 
-        setLux(illuminance);
-
-        if (illuminance <= RED_THRESHOLD) {
-          setBgColor("red");
-        } else {
-          setBgColor("white");
-        }
         if (illuminance <= WIN_THRESHOLD) {
-          if (!darkStartRef.current) {
+          if (darkStartRef.current === null) {
             darkStartRef.current = Date.now();
           } else {
             const duration = Date.now() - darkStartRef.current;
+
             if (duration >= REQUIRED_TIME) {
-              setWin(true);
-              setBgColor("green");
+              handleWin();
             }
           }
         } else {
           darkStartRef.current = null;
         }
       });
-
-      return subscription;
     };
 
-    let subscription: { remove: () => void } | undefined;
-
-    start().then((sub) => {
-      subscription = sub;
-    });
+    start();
 
     return () => {
       subscription?.remove();
+
+      if (clueTimeoutRef.current) {
+        clearTimeout(clueTimeoutRef.current);
+      }
     };
-  }, [win]);
+  }, []);
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: win ? "green" : bgColor }]}
-    >
-      {win ? (
-        <Text style={styles.text}>WIN</Text>
-      ) : (
-        <>
-          <Text style={styles.text}>Mets le téléphone dans le noir</Text>
-          <Text style={styles.value}>{lux.toFixed(1)} lux</Text>
-        </>
-      )}
-    </SafeAreaView>
+    <View style={styles.container}>
+      <View style={styles.answersContainer}>
+        <Answers
+          squared={false}
+          options={[
+            {
+              title: "Décrocher comme la dame",
+              onClick: onGoodWrongAnswer,
+              img: image1,
+            },
+            {
+              title: "Jeter son téléphone",
+              onClick: onWrongAnswer,
+              img: image2,
+            },
+          ]}
+        />
+      </View>
+
+      {!!clue && <Text style={styles.clue}>{clue}</Text>}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
-    padding: 24,
+    width: "100%",
+  },
+  answersContainer: {
+    flex: 1,
+    justifyContent: "center",
+    minHeight: 0,
+    width: "100%",
   },
   text: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
+    color: "white",
     textAlign: "center",
-    color: "black",
+    marginBottom: 12,
+    paddingHorizontal: 16,
   },
-  value: {
-    marginTop: 16,
+  clue: {
     fontSize: 22,
+    fontWeight: "bold",
     color: "black",
+    transform: [{ translateY: -50 }],
   },
 });
