@@ -5,6 +5,10 @@ import React from "react";
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 import { Audio } from "expo-av";
+<<<<<<< Updated upstream
+=======
+import AppText from "@/app/components/ui/AppText";
+>>>>>>> Stashed changes
 
 export type AppButtonVariant = "red" | "blue" | "yellow" | "green";
 
