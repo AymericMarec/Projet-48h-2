@@ -1,7 +1,7 @@
 import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { View, Pressable, Button } from "react-native";
+import { View, Pressable, Button,Text } from "react-native";
 
 export default function DoNotPressQuestion(){
     const { nextQuestion,loseLife } = useQuiz();
@@ -25,6 +25,7 @@ export default function DoNotPressQuestion(){
 
     return (
         <View style={{ flex: 1 }}>
+            {isWin && <Text>Bravo , bonne réponse</Text>}
             <Pressable>
                 <Button title="Clique ici" onPress={onClickLoose}/>
             </Pressable>

@@ -17,6 +17,7 @@ export default function DoorBellQuestion(){
 
     return (
         <View>
+            {isWin && <Text>Bravo , bonne réponse</Text>}
             <Text>Il y a quelqu’un ?</Text>
             <Pressable onLongPress={win}>
                 <Text>.</Text>

@@ -47,7 +47,7 @@ export default function LightQuestion() {
     if (hasWonRef.current) return;
 
     hasWonRef.current = true;
-    
+
     setIsWin(true);
     setTimeout(() => {
       nextQuestion();
@@ -100,6 +100,7 @@ export default function LightQuestion() {
 
   return (
     <View style={styles.container}>
+      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared={false}

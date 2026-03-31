@@ -2,6 +2,7 @@ import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { Accelerometer } from "expo-sensors";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+
 import {
   Animated,
   Dimensions,
@@ -9,6 +10,7 @@ import {
   Pressable,
   StyleSheet,
   View,
+  Text,
 } from "react-native";
 
 const spiderImg = require("../../../assets/questions/spider.png");
@@ -167,6 +169,7 @@ export default function ShakeQuestion() {
 
   return (
     <View style={styles.container}>
+      {isWin && <Text>Bravo , bonne réponse</Text>}
       {spiders.map((spider, index) => {
         const shakeRotate = shakeAnimRefs[index].interpolate({
           inputRange: [-1, 0, 1],
