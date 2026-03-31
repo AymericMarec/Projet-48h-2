@@ -6,6 +6,8 @@ import DoorBellQuestion from "../components/question/DoorBellQuestion";
 import ShakeQuestion from "../components/question/ShakeQuestion";
 import DeficientButton from "../components/question/DeficientButton";
 import SwipeQuestion from "../components/question/SwipeQuestion";
+import SizeComparison1 from "../components/question/SizeComparison1";
+import SizeComparison2 from "../components/question/SizeComparison2";
 
 const mappingQuestion:Record<string,Question> = {
     "BearQuestion" : {
@@ -50,6 +52,19 @@ const mappingQuestion:Record<string,Question> = {
         needSkipButton: false,
         title: "Clique sur le bon bouton",
     },
+          "SizeComparison1" : {
+        type: "interactive",
+        component: SizeComparison1,
+        needSkipButton: false,
+        title: "Clique sur le plus petit",
+    },
+    "SizeComparison2" : {
+        type: "interactive",
+        component: SizeComparison2,
+        needSkipButton: false,
+        title: "Clique sur le plus grand",
+    },
+
     "MonthsQuestion" : {
       type: "basic",
       question: "Combien de mois ont 28 jours ?",
@@ -145,7 +160,7 @@ const mappingQuestion:Record<string,Question> = {
       ],
       answer: "5 minutes",
     },
-
+    
 }
 
 
@@ -161,6 +176,8 @@ export const questions: Record<string, Array<Question>> = {
       mappingQuestion["PlaneQuestion"],
       mappingQuestion["DoorBellQuestion"],
       mappingQuestion["FishQuestion"],
+      mappingQuestion["SizeComparison1"],
+      mappingQuestion["SizeComparison2"],
   ],
 
 };

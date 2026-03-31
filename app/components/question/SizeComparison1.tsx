@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '@/assets/style/button.styles';
 import { quizStyles } from '@/assets/style/quiz.styles';
@@ -35,10 +35,6 @@ export default function VisualEnigma1() {
 
   return (
     <View style={quizStyles.container}>
-      <Text style={quizStyles.title}>
-        Clique sur le plus petit.
-      </Text>
-
       <View style={{ 
         flexDirection: 'row', 
         flexWrap: 'wrap', 

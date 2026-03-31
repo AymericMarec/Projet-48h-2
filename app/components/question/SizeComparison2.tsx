@@ -35,10 +35,6 @@ export default function VisualEnigma2() {
 
   return (
     <View style={quizStyles.container}>
-      <Text style={quizStyles.title}>
-        Clique sur le plus grand.
-      </Text>
-
       <View style={{ 
         flexDirection: 'row', 
         flexWrap: 'wrap', 
