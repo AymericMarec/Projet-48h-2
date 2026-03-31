@@ -1,5 +1,5 @@
 import { quizStyles } from "@/assets/style/quiz.styles";
-import { Text } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 type QuestionProps = {
   title: string;
@@ -14,5 +14,5 @@ export default function Question({
     variant === "shell"
       ? quizStyles.questionTitleInteractive
       : quizStyles.questionTitle;
-  return <Text style={style}>{title}</Text>;
+  return <AppText style={style}>{title}</AppText>;
 }

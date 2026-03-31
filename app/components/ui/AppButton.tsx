@@ -2,9 +2,10 @@ import { styles } from "@/assets/style/button.styles";
 import { answersStyles } from "@/assets/style/answers.styles";
 import { Image } from "expo-image";
 import React from "react";
-import { Pressable, Text, View, type StyleProp, type ViewStyle } from "react-native";
+import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 import { Audio } from "expo-av";
+import AppText from "@/app/components/ui/AppText";
 
 export type AppButtonVariant = "red" | "blue" | "yellow" | "green";
 
@@ -72,9 +73,9 @@ export default function AppButton({
           style={answersStyles.squaredImage}
           contentFit="cover"
         />
-        <Text style={textStyles} numberOfLines={3}>
+        <AppText style={textStyles} numberOfLines={3}>
           {text}
-        </Text>
+        </AppText>
       </View>
     ) : img ? (
       <View style={answersStyles.listInnerRow}>
@@ -83,12 +84,12 @@ export default function AppButton({
           style={answersStyles.listThumb}
           contentFit="cover"
         />
-        <Text style={[...textStyles, { flex: 1 }]} numberOfLines={2}>
+        <AppText style={[...textStyles, { flex: 1 }]} numberOfLines={2}>
           {text}
-        </Text>
+        </AppText>
       </View>
     ) : (
-      <Text style={textStyles}>{text}</Text>
+      <AppText style={textStyles}>{text}</AppText>
     );
 
   return (

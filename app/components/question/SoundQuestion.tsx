@@ -3,7 +3,8 @@ import { useQuiz } from "@/app/context/quizContext";
 import { Audio } from "expo-av";
 import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 const sound1 = require("../../../assets/questions/sound_1.jpg");
 const sound2 = require("../../../assets/questions/sound_2.jpg");
@@ -138,7 +139,6 @@ export default function SoundQuestion() {
 
   return (
     <View style={styles.container}>
-      {isWin && <Text>Bravo , bonne réponse</Text>}
       <View style={styles.answersContainer}>
         <Answers
           squared
@@ -150,7 +150,7 @@ export default function SoundQuestion() {
           ]}
         />
       </View>
-      {!!clue && <Text style={styles.clue}>{clue}</Text>}
+      {!!clue && <AppText style={styles.clue}>{clue}</AppText>}
     </View>
   );
 }

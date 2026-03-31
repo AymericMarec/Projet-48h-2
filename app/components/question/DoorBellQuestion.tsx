@@ -1,7 +1,8 @@
 import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Button, Pressable, View, Text } from "react-native";
+import { Button, Pressable, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 export default function DoorBellQuestion(){
     const [isWin, setIsWin] = useState<boolean | null>(null);
@@ -18,9 +19,8 @@ export default function DoorBellQuestion(){
     return (
         <View>
             {isWin && <Text>Bravo , bonne réponse</Text>}
-            <Text>Il y a quelqu’un ?</Text>
             <Pressable onLongPress={win}>
-                <Text>.</Text>
+                <AppText>.</AppText>
             </Pressable>
         </View>
     )

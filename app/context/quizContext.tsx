@@ -22,9 +22,6 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
   function loseLife() {
     setLives((prev) => {
       const nextLives = Math.max(prev - 1, 0);
-      if (nextLives <= 0) {
-        // rajouter ecran de loose
-      }
       return nextLives;
     });
   }
@@ -35,9 +32,6 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
 
   function nextQuestion() {
     setQuestionIndex((prev) => prev + 1);
-    if(questionIndex == 10){
-        //rajouter ecran de win de chapitre
-    }
   }
 
   function chooseChapter(chapterIndex:number) {
@@ -47,7 +41,7 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
 
   function reset() {
     setLives(3);
-    setChapterIndex(0);
+    setChapterIndex(1);
     setQuestionIndex(0);
   }
 

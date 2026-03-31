@@ -67,10 +67,10 @@ export const quizBackgroundStyles = StyleSheet.create({
     backgroundColor: "#DE3162",
   },
   circleBottomLeftOuter: {
-    bottom: height * 0.18,
+    bottom: height * 0.16,
     left: -width * 0.08,
-    width: width * 0.36,
-    height: width * 0.36,
+    width: width * 0.45,
+    height: width * 0.45,
     borderRadius: width * 0.18,
     opacity: 0.25,
   },

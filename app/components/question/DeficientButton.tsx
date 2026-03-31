@@ -2,6 +2,7 @@ import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Button, Pressable, View,Text } from "react-native";
+import AppButton from "@/app/components/ui/AppButton";
 
 export default function DeficientButton(){
     const { nextQuestion,loseLife } = useQuiz();
@@ -24,17 +25,23 @@ export default function DeficientButton(){
     }
 
     return (
-        <View>
-            {isWin && <Text>Bravo , bonne réponse</Text>}
-            <Pressable>
-                <Button title="Clique ici" onPress={loose}/>
-            </Pressable>
-            <Pressable>
-                <Button title="Clique ici" onPress={loose}/>
-            </Pressable>
-            <Pressable>
-                <Button title="Clique ici" onPress={push}/>
-            </Pressable>
+        <View style={{ gap: 40 }}>
+            {isWin && <Text>Bravo , bonne réponse</Text>} 
+            <AppButton
+                onClick={loose}
+                text={"Clique ici"}
+                variant="red"
+            />
+            <AppButton
+                onClick={loose}
+                text={"Clique ici"}
+                variant="blue"
+            />
+            <AppButton
+                onClick={push}
+                text={"Clique ici"}
+                variant="yellow"
+            />
         </View>
     )
 }

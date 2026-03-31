@@ -1,4 +1,5 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 const { width } = Dimensions.get("window");
 
@@ -15,15 +16,15 @@ export default function HiddenCat() {
         contentContainerStyle={styles.scrollContent}
       >
         <View style={styles.catCard}>
-          <Text style={styles.catText}>Chat caché</Text>
+          <AppText style={styles.catText}>Chat caché</AppText>
         </View>
 
         <View style={styles.catCard}>
-          <Text style={styles.catText}>Chat 1</Text>
+          <AppText style={styles.catText}>Chat 1</AppText>
         </View>
 
         <View style={styles.catCard}>
-          <Text style={styles.catText}>Chat 2</Text>
+          <AppText style={styles.catText}>Chat 2</AppText>
         </View>
       </ScrollView>
     </View>

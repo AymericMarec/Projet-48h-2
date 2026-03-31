@@ -1,30 +1,49 @@
 import type { ReactNode } from "react";
+import { useEffect } from "react";
 import { useQuestion } from "./hooks/useQuiz";
 import StandardQuestion from "./components/question/StandardQuestion";
 import { useQuiz } from "@/app/context/quizContext";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 import { QuizBackground } from "./components/ui/QuizBackground";
 import { quizStyles } from "../assets/style/quiz.styles";
 import LivesIndicator from "./components/ui/LivesIndicator";
 import LongPressSkippableTitle from "./components/ui/LongPressSkippableTitle";
 import Question from "./components/ui/Question";
+import { EndComponent } from "./components/ui/EndComponent";
+import AppText from "@/app/components/ui/AppText";
 
 export default function QuizPage() {
-  const { chapterIndex, questionIndex } = useQuiz();
+  const { chapterIndex, questionIndex, lives, reset } = useQuiz();
+  const router = useRouter();
+  const isLoose = lives <= 0;
+  const isWin = questionIndex == 10;
+  const hasEnded = isLoose || isWin;
+
+  useEffect(() => {
+    if (!hasEnded) return;
+
+    const timeout = setTimeout(() => {
+      reset();
+      router.replace("/");
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [hasEnded, reset, router]);
 
   const question = useQuestion(String(chapterIndex), questionIndex);
-
+  
   let view: ReactNode = (
     <View>
-      <Text>Init</Text>
+      <AppText>Init</AppText>
     </View>
   );
 
   if (!question) {
     view = (
       <View>
-        <Text>aucune question trouvé</Text>
+        <Text>aucune question trouvé avec chapitre : {chapterIndex} et question numero : {questionIndex}</Text>
       </View>
     );
   } else if (question.type === "basic") {
@@ -34,11 +53,11 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground>
+    <QuizBackground variant={isLoose ? "loose" : isWin ? "win" : undefined}>
       <SafeAreaView style={quizStyles.container}>
-        <LivesIndicator />
+        {!isLoose && !isWin && <LivesIndicator />}
         <View style={{ flex: 1, width: "100%", minHeight: 0 }}>
-          {question?.type === "interactive" && (
+          {!isLoose && !isWin && question?.type === "interactive" && (
             <View style={quizStyles.interactiveTitleSlot}>
               {question.needSkipButton ? (
                 <LongPressSkippableTitle title={question.title} />
@@ -56,7 +75,7 @@ export default function QuizPage() {
               minHeight: 0,
             }}
           >
-            {view}
+            {hasEnded ? <EndComponent isWin={isWin} /> : view}
           </View>
         </View>
       </SafeAreaView>

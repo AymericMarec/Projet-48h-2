@@ -1,50 +1,65 @@
-# Welcome to your Expo app 👋
+# 🎮 YESQUIZZ
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Bienvenue sur YESQUIZZ, un jeu de quiz pas comme les autres… 
+Ici, il ne suffit pas de répondre : il faut agir, bouger, réfléchir autrement.
 
-## Get started
+## 🚀 Installation
+### ✅ Prérequis
 
-1. Install dependencies
+Avant de commencer, assurez-vous d’avoir :
+- 📱 Un téléphone (Android recommandé)
+   - ⚠️ Certaines fonctionnalités ne sont pas disponibles sur iOS
+- 📲 L’application Expo Go
+- 💻 Node.js installé (avec npm)
 
-   ```bash
-   npm install
-   ```
+### 📦 Étapes
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+**Installer les dépendances** :
 ```bash
-npm run reset-project
+npm install
+```
+**Lancer l’application** :
+```bash
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**Scanner le QR code affiché** :  
+🍏 iOS → avec l’appareil photo  
+🤖 Android → via Expo Go (Scan QR Code)
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🕹️ Comment jouer ?
+Chaque série contient 10 questions  
+❤️ Vous commencez avec 3 vies  
+❌ Chaque mauvaise réponse = -1 vie  
+🎯 Objectif : terminer la série sans perdre toutes vos vies
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Mais attention…
 
-## Join the community
+👉 Certaines questions ne se résolvent pas avec un simple clic 👀
 
-Join our community of developers creating universal apps.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## ⚠️ Problèmes & Astuce
+
+Selon votre téléphone :
+- certaines fonctionnalités peuvent être limitées
+- certains capteurs peuvent ne pas fonctionner
+
+👉 **Si vous êtes complètement bloqué :**
+
+🟡 Maintenez appuyé 6 secondes sur l'énoncé  
+➡️ Cela permet de passer la question
+
+## 👥 L’équipe
+
+Une question ? Un bug ? Une idée ?
+N’hésitez pas à contacter :
+
+Diane Sautereau du Part  
+Aymeric Marec  
+Noémi Dublanc  
+Brendan Visine  
+Kevin Cano  
+Yanice Hourcade  
+Clara Licette  
+Roïque Ngouala

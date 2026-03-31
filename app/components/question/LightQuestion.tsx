@@ -3,7 +3,8 @@ import { useQuiz } from "@/app/context/quizContext";
 import { router } from "expo-router";
 import { LightSensor } from "expo-sensors";
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import AppText from "@/app/components/ui/AppText";
 
 const image1 = require("../../../assets/questions/light_1.jpg");
 const image2 = require("../../../assets/questions/light_2.jpg");
@@ -119,7 +120,7 @@ export default function LightQuestion() {
         />
       </View>
 
-      {!!clue && <Text style={styles.clue}>{clue}</Text>}
+      {!!clue && <AppText style={styles.clue}>{clue}</AppText>}
     </View>
   );
 }

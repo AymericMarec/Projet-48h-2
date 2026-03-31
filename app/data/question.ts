@@ -6,6 +6,8 @@ import DoorBellQuestion from "../components/question/DoorBellQuestion";
 import ShakeQuestion from "../components/question/ShakeQuestion";
 import DeficientButton from "../components/question/DeficientButton";
 import SwipeQuestion from "../components/question/SwipeQuestion";
+import FindWhiteQuestion from "../components/question/FindWhiteQuestion";
+import LightQuestion from "../components/question/LightQuestion";
 
 const mappingQuestion:Record<string,Question> = {
     "BearQuestion" : {
@@ -145,6 +147,18 @@ const mappingQuestion:Record<string,Question> = {
       ],
       answer: "5 minutes",
     },
+    "LightQuestion" : {
+      type: "interactive",
+      component: LightQuestion,
+      needSkipButton: true,
+      title: "Comment on décroche le téléphone ?",
+    },
+    "FindWhiteQuestion" : {
+      type: "interactive",
+      component: FindWhiteQuestion,
+      needSkipButton: true,
+      title: "Montre moi la couleur du cheval blanc d'Henry IV",
+    },
 
 }
 
@@ -155,11 +169,11 @@ export const questions: Record<string, Array<Question>> = {
       mappingQuestion["GN question"],
       mappingQuestion["DeficientButton"],
       mappingQuestion["BearQuestion"],
+      mappingQuestion["FindWhiteQuestion"],
       mappingQuestion["ErrorQuestion"],
       mappingQuestion["SwipeQuestion"],
-      mappingQuestion["DoNotPressButton"],
+      mappingQuestion["LightQuestion"],
       mappingQuestion["PlaneQuestion"],
-      mappingQuestion["DoorBellQuestion"],
       mappingQuestion["FishQuestion"],
   ],
 
