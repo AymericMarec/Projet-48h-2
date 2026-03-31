@@ -43,10 +43,10 @@ export const quizBackgroundStyles = StyleSheet.create({
     opacity: 0.25,
   },
   squareTopRightOuter: {
-    top: height * 0.075,
+    top: height * 0.08,
     right: -width * 0.03,
-    width: width * 0.2,
-    height: width * 0.2,
+    width: width * 0.15,
+    height: width * 0.15,
     borderRadius: width * 0.03,
     opacity: 0.25,
   },
