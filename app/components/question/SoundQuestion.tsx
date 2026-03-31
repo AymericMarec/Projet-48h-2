@@ -138,10 +138,10 @@ export default function SoundQuestion() {
         <Answers
           squared
           options={[
-            { title: "Option 1", onClick: onWrongAnswer, img: sound1 },
-            { title: "Option 2", onClick: onWrongAnswer, img: sound2 },
-            { title: "Option 3", onClick: onWrongAnswer, img: sound3 },
-            { title: "Option 4", onClick: onWrongAnswer, img: sound4 },
+            { title:"Nerf", onClick: onWrongAnswer, img: sound1 },
+            { title:"Miel", onClick: onWrongAnswer, img: sound2 },
+            { title:"Crier fort", onClick: onWrongAnswer, img: sound3 },
+            { title:"Tronçonneuse", onClick: onWrongAnswer, img: sound4 },
           ]}
         />
       </View>
